@@ -1,0 +1,64 @@
+﻿@model RadioComponents.Models.Order.ListMyOrderViewModel
+@using RadioComponents.Domain.Entities;
+
+<div>
+    <br />
+    @foreach (var cl in Model.AllOrders)
+    {
+        <fieldset>
+            <legend>@cl.OrderTime.ToString("dd/MM/yyyy")</legend>
+            @{
+                var listcomponents = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cart>>(cl.OrderInfoString);
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Количество
+                        </th>
+                        <th>
+                            Цена
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var element in listcomponents)
+                    {
+                        <tr>
+                            <td>@element.Name</td>
+                            <td>@element.Quantity штук</td>
+                            <td>@element.Price руб.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <p>Итого: @cl.Price руб.</p>
+            </div>
+        </fieldset>
+        <br />
+    }
+</div>
+
+<style>
+    fieldset {
+        position: relative;
+        border: 1px solid #00ff21;
+        padding: 10px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+        fieldset legend {
+            position: absolute;
+            top: 0;
+            font-size: 18px;
+            line-height: 1;
+            margin: -9px 0 0;
+            background: #fff;
+            padding: 0 3px;
+        }
+</style>

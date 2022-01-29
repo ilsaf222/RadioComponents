@@ -1,0 +1,95 @@
+﻿@model RadioComponents.Models.Order.ListOrderViewModel
+@using RadioComponents.Domain.Entities;
+@using RadioComponents.Domain.Models;
+
+
+<div>
+    @foreach (var cl in Model.AllOrders)
+    {
+        <fieldset>
+            <legend>Имя: @cl.ClientName, Почта: @cl.Email, @cl.Phone, @cl.OrderTime.ToString("dd/MM/yyyy")</legend>
+            @{
+                var listcomponents = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cart>>(cl.OrderInfoString);
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Количество
+                        </th>
+                        <th>
+                            Цена
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var element in listcomponents)
+                    {
+                        <tr>
+                            <td>@element.Name</td>
+                            <td>@element.Quantity штук</td>
+                            <td>@element.Price руб.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <p>Итого: @cl.Price руб.</p>
+            </div>
+
+            @if (cl.Status == OrderStatus.NotGiven)
+            {
+                <a class="btn btn-info" asp-action="SwitchStatus" asp-controller="Order" asp-route-id="@cl.Id">Выдать</a>
+            }
+            else
+            {
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="Order" asp-route-id="@cl.Id">Удалить</a>
+            }
+        </fieldset>
+    }
+</div>
+
+
+@*@section Scripts{
+    <script>
+        if (document.getElementById("statusId").value == "NotGiven") {
+            console.log("не выдан");
+        }
+        else {
+            л
+            console.log("Выдан выдан");
+        }
+    </script>
+}*@
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 4px solid black;
+    }
+
+    fieldset {
+        margin-top: 20px;
+        font-family: sans-serif;
+        border: 5px solid #1F497D;
+        background: #ddd;
+        border-radius: 5px;
+        padding: 15px;
+    }
+
+        fieldset legend {
+            background: #1F497D;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 32px;
+            border-radius: 5px;
+            box-shadow: 0 0 0 5px #ddd;
+            width: auto;
+        }
+</style>
+

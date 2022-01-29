@@ -1,0 +1,175 @@
+﻿@model IEnumerable<RadioComponents.Models.Component.ListComponentViewModel>
+
+<form asp-action="Index" asp-controller="Home" method="get">
+    <p>Поиск: <input type="text" placeholder="Название элемента" name="componName"></p>
+    <select asp-items="@Html.GetEnumSelectList<RadioComponents.Domain.Models.ComponType>()" name="componType">
+        <option selected="selected">Не выбрано</option>
+    </select>
+    <input type="submit" value="Поиск"/>
+</form>
+
+<div class="row m-5 mb-2">
+    @foreach (var component in Model)
+    {
+        <div class="col-xl-4">
+            <div class="card">
+                <img src="@component.Image" alt="@component.ComponentName" style="width:100%">
+                <div class="product-info">
+                    <h3 class="product-title">@component.ComponentName</h3>
+
+                    @using (Html.BeginForm(FormMethod.Post))
+                    {
+                        <input class="float-right" type="number" style="width:60px;" value="1" name="componentCount" />
+                        <div class="price">@component.Price &#8381;</div>
+                        <button class="btn btn-info" asp-action="" asp-controller="" asp-route-componentId="@component.Id">Подробнее</button>
+                        <button class="btn btn-success float-right" type="submit" asp-action="AddToCart" asp-controller="Cart" asp-route-componentId="@component.Id">&nbsp;&nbsp;В корзину&nbsp;&nbsp;</button>
+                    }
+                </div>
+
+            </div>
+            <br />
+        </div>
+    }
+</div>
+
+<style>
+body { background-image: url("../image/fon.png"); }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .price {
+        font-family: "Open Sans";
+        color: #162546;
+        font-style: italic;
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    .product-title {
+        font-weight: normal;
+        font-family: "Bradley Hand ITC";
+        color: #162546;
+        font-size: 18px;
+    }
+
+    .product-info {
+        padding-top: 15px;
+    }
+    /********************************/
+    /*Alert                         */
+    /********************************/
+
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+
+    /********************************/
+    /*Buttons                       */
+    /********************************/
+
+    .floating-button {
+        text-decoration: none;
+        position: relative;
+        height: 40px;
+        width: 120px;
+        line-height: 40px;
+        padding: 0 20px;
+        color: white;
+        font-size: 14px;
+        background: #383d48;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    }
+
+        .floating-button:before {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: 0;
+            right: 0;
+            background: linear-gradient(225deg, #BEFDE6 45%, #aaaaaa 50%, #cccccc 56%, white 80%);
+            box-shadow: -1px 1px 1px rgba(0, 0, 0, .4);
+            transition: .3s;
+        }
+
+        .floating-button:hover:before {
+            width: 20px;
+            height: 20px;
+        }
+</style>
+
+@section Scripts{
+    <script>
+        //function Filter() {
+        //    input = document.getElementById("componName");
+        //    filter = input.value.toUpperCase();
+        //    table = document.getElementById("compTable");
+        //    tr = table.getElementsByTagName("tr");
+
+        //    for (i = 0; i < tr.length; i++) {
+        //        td = tr[i].getElementsByTagName("td")[0];
+        //        if (td) {
+        //            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        //                tr[i].style.display = "";
+        //            } else {
+        //                tr[i].style.display = "none";
+        //            }
+        //        }
+        //    }
+        //}
+    </script>
+}
+
+@*$(function () {
+        const compId = '@Html.Raw(Model.)';
+
+        $("#switchr").click(function () {
+            $.ajax({
+                url: '/Cart/Buy',
+                type: 'POST',
+                data: { componentId: compId },
+                success: function (result) {
+                },
+                error: function (err) {
+                    alert("error " + err);
+                }
+            });
+            return false;
+        });
+    });*@

@@ -1,0 +1,73 @@
+﻿@model RadioComponents.Models.CreateCategoryViewModel<RadioComponents.Models.CategoryViewModels.Resistor.ResistorCategoryViewModel>
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Категория</h2>
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="Type" value="@RadioComponents.Domain.Models.ComponType.Resistor" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" asp-for="Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" asp-for="UploadedFile" accept=".jpg, .jpeg, .png"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.ResType" class="control-label"></label>
+                <input type="text" asp-for="Configuration.ResType" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Resistance" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Resistance" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Accuracy" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Accuracy" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Power" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Power" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaxVoltage" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MaxVoltage" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Configuration.MinimumWorkTemp" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MinimumWorkTemp" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaximumWorkTemp" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MinimumWorkTemp" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.CaseDiameter" class="control-label"></label>
+                <input type="number" asp-for="Configuration.CaseDiameter" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.CaseLength" class="control-label"></label>
+                <input type="number" asp-for="Configuration.CaseLength" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Weight" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Weight" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Назад</a>
+</div>
+

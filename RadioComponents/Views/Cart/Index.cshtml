@@ -1,0 +1,47 @@
+﻿
+@{
+    var index = -1;
+}
+<html>
+<body>
+    @if (ViewBag.Cart != null)
+    {
+        <a class="btn btn-danger" style="float:right; margin-bottom:15px;" asp-controller="Cart" asp-action="DeleteComponents">Очистить корзину</a>
+        <h3>Корзина</h3>
+        <table class="table">
+            <tr>
+                <th>Название</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th></th>
+            </tr>
+            @foreach (var item in ViewBag.Cart)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Price * item.Quantity)</td>
+                    <td><a class="btn btn-danger" asp-controller="Cart" asp-action="Remove" asp-route-id="@(++index)">Удалить</a></td>
+                </tr>
+            }
+            <tr>
+                <td align="right" colspan="6">Итого:</td>
+                <td>
+                    @ViewBag.Total
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="7"><a class="btn btn-success" asp-controller="Order" asp-action="Ordering">Купить</a></td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <h3>Ваша корзина пуста</h3>
+    }
+    <br>
+    <a class="btn btn-success" asp-controller="Home" asp-action="Index">Продолжить покупки</a>
+
+</body>
+</html>
+

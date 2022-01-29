@@ -1,0 +1,23 @@
+﻿@model RadioComponents.Models.Order.OrderingViewModel
+
+<h1>Введите информацию о себе</h1>
+<form asp-action="Ordering" method="post">
+    <br />
+    <div>
+        <label asp-for="ClientName"></label>
+        <input type="text" asp-for="ClientName" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Email"></label>
+        <input type="text" asp-for="Email" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Phone"></label>
+        <input type="text" asp-for="Phone" />
+    </div>
+    <div>
+        <input type="submit" value="Оформить заказ" />
+    </div>
+</form>

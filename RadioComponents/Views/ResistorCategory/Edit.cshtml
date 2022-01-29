@@ -1,0 +1,70 @@
+﻿@model RadioComponents.Models.EditCategoryViewModel<RadioComponents.Models.CategoryViewModels.Resistor.ResistorCategoryViewModel>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" asp-for="Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.ResType" class="control-label"></label>
+                <input type="text" asp-for="Configuration.ResType" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Resistance" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Resistance" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Accuracy" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Accuracy" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Power" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Power" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaxVoltage" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MaxVoltage" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Configuration.MinimumWorkTemp" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MinimumWorkTemp" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaximumWorkTemp" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MinimumWorkTemp" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.CaseDiameter" class="control-label"></label>
+                <input type="number" asp-for="Configuration.CaseDiameter" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.CaseLength" class="control-label"></label>
+                <input type="number" asp-for="Configuration.CaseLength" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Weight" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Weight" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Обновить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Назад</a>
+</div>
+

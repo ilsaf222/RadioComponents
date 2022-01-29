@@ -1,0 +1,68 @@
+﻿@model RadioComponents.Models.EditCategoryViewModel<RadioComponents.Models.CategoryViewModels.Diode.DiodeCategoryViewModel>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" asp-for="Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.NumberDiodesCase" class="control-label"></label>
+                <input type="number" asp-for="Configuration.NumberDiodesCase" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.DiodeConfiguration" class="control-label"></label>
+                <input type="text" asp-for="Configuration.DiodeConfiguration" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaxDCReverseVolt" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MaxDCReverseVolt" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaximumForwardCurrent" class="control-label"></label>
+                <input type="number" asp-for="Configuration.MaximumForwardCurrent" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaxForwardVoltAt25" class="control-label"></label>
+                <input type="text" asp-for="Configuration.MaxForwardVoltAt25" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.MaxReverseCurrentAt25" class="control-label"></label>
+                <input type="text" asp-for="Configuration.MaxReverseCurrentAt25" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.CapacityAtVr" class="control-label"></label>
+                <input type="text" asp-for="Configuration.CapacityAtVr" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.OperatingTempPNJunction" class="control-label"></label>
+                <input type="text" asp-for="Configuration.OperatingTempPNJunction" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Case" class="control-label"></label>
+                <input type="text" asp-for="Configuration.Case" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.Weight" class="control-label"></label>
+                <input type="number" asp-for="Configuration.Weight" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Обновить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Назад</a>
+</div>
+
